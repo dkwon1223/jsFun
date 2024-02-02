@@ -21,32 +21,34 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
-  orangePetNames() {
+  orangePetNames(babyPets) {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
         /* CODE GOES HERE */
-    let orangeKitties = [];
-    kitties.forEach((kitty) => {
-      if(kitty.color === "orange") {
-        orangeKitties.push(kitty.name);
+    let orangePets = [];
+    babyPets.forEach((babyPet) => {
+      if(babyPet.color === "orange") {
+        orangePets.push(babyPet.name);
       }
     })
-    return orangeKitties;
+    return orangePets;
     // Annotation:
     // Write your annotation here as a comment
   },
 
-  sortByAge() {
+  sortByAge(babyPets) {
     // Sort the kitties by their age
 
     /* CODE GOES HERE */
+    let ageSortedPets = babyPets.sort((a, b) => b.age - a.age);
+    return ageSortedPets;
 
     // Annotation:
     // Write your annotation here as a comment
   },
 
-  growUp() {
+  growUp(babyPets) {
     // Return an array of kitties who have all grown up by 2 years e.g.
     // [{
     //   name: 'Felicia',
@@ -61,6 +63,11 @@ const kittyPrompts = {
     // ...etc]
 
     /* CODE GOES HERE */
+    let grownUpPets = babyPets.map((babyPet) => {
+      babyPet.age += 2;
+      return babyPet;
+    })
+    return grownUpPets;
   }
 };
 
@@ -106,7 +113,6 @@ const clubPrompts = {
         }
       })
     })
-    console.log(memberClubs);
     return memberClubs;
     // Annotation:
     // Write your annotation here as a comment
@@ -142,6 +148,7 @@ const modPrompts = {
     // ]
 
     /* CODE GOES HERE */
+    
 
     // Annotation:
     // Write your annotation here as a comment
