@@ -1,5 +1,6 @@
 const { kitties } = require('./datasets/kitties');
 const { puppers } = require('./datasets/puppers');
+const { clubs } = require('./datasets/clubs');
 const { mods } = require('./datasets/mods');
 const { cakes } = require('./datasets/cakes');
 const { classrooms } = require('./datasets/classrooms');
@@ -25,7 +26,13 @@ const kittyPrompts = {
         // ['Tiger', 'Snickers']
 
         /* CODE GOES HERE */
-
+    let orangeKitties = [];
+    kitties.forEach((kitty) => {
+      if(kitty.color === "orange") {
+        orangeKitties.push(kitty.name);
+      }
+    })
+    return orangeKitties;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -88,7 +95,19 @@ const clubPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    let memberClubs = {};
+    clubs.forEach((club) => {
+      club.members.forEach((member) => {
+        if(!memberClubs[member]) {
+          memberClubs[member] = [];
+          memberClubs[member].push(club.club);
+        } else {
+          memberClubs[member].push(club.club);
+        }
+      })
+    })
+    console.log(memberClubs);
+    return memberClubs;
     // Annotation:
     // Write your annotation here as a comment
   }
