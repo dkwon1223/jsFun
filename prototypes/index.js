@@ -385,9 +385,17 @@ const bookPrompts = {
 
 
     /* CODE GOES HERE */
-    
+    let nonViolentBooks = arr.filter((book) => {
+      return book.genre !== "Horror" && book.genre !== "True Crime";
+    })
+    return nonViolentBooks.map((nonViolentBook) => {
+      return nonViolentBook.title;
+    });
+    // Annotation:
+    // Write your annotation here as a comment
+  },
 
-  getNewBooks() {
+  getNewBooks(arr) {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
 
@@ -396,7 +404,15 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
-
+    let ninetiesThousandsBooks = arr.filter((book) => {
+      return book.published >= 1990 && book.published < 2010;
+    })
+    return ninetiesThousandsBooks.map((ninetiesThousandsBook) => {
+      return {
+        title: ninetiesThousandsBook.title, 
+        year: ninetiesThousandsBook.published
+      }
+    })
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -412,7 +428,16 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     /* CODE GOES HERE */
-
+    let afterYearBooks = books.filter((book) => {
+      return book.published > year
+    })
+    let titleAndYears = afterYearBooks.map((afterYearBook) => {
+      return {
+        title: afterYearBook.title,
+        year: afterYearBook.published
+      };
+    });
+    return titleAndYears;
     // Annotation:
     // Write your annotation here as a comment
   }
