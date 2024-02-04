@@ -148,8 +148,14 @@ const modPrompts = {
     // ]
 
     /* CODE GOES HERE */
-    
-
+    let studentsPerInstructors = mods.reduce((acc, mod) => {
+      acc.push({
+        mod: mod.mod,
+        studentsPerInstructor: mod.students/mod.instructors
+      })
+      return acc;
+    }, [])
+    return studentsPerInstructors;
     // Annotation:
     // Write your annotation here as a comment
   }
@@ -183,7 +189,14 @@ const cakePrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    let flavorStocks = cakes.reduce((acc, cake) => {
+      acc.push({
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+      })
+      return acc
+    }, [])
+    return flavorStocks;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -210,7 +223,10 @@ const cakePrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    let inStockCakes = cakes.filter((cake) => {
+      return cake.inStock > 0;
+    })
+    return inStockCakes;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -220,7 +236,11 @@ const cakePrompts = {
     // 59
 
     /* CODE GOES HERE */
-
+    let netStock = cakes.reduce((sum, cake) => {
+      sum += cake.inStock;
+      return sum;
+    }, 0)
+    return netStock;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -231,7 +251,15 @@ const cakePrompts = {
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
     /* CODE GOES HERE */
-
+    let toppings = cakes.reduce((list, cake) => {
+      cake.toppings.forEach((topping) => {
+        if(!list.includes(topping)) {
+          list.push(topping);
+        }
+      })
+      return list;
+    }, [])
+    return toppings;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -248,7 +276,17 @@ const cakePrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    let groceries = cakes.reduce((acc, cake) => {
+      cake.toppings.forEach((topping) => {
+        if(!acc[topping]) {
+          acc[topping] = 1;
+        } else {
+          acc[topping] += 1;
+        }
+      })
+      return acc;
+    }, {})
+    return groceries;
     // Annotation:
     // Write your annotation here as a comment
   }
@@ -282,7 +320,13 @@ const classPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    let feRooms = classrooms.reduce((list, room) => {
+      if(room.program === "FE") {
+        list.push(room);
+      }
+      return list;
+    }, [])
+    return feRooms;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -296,7 +340,15 @@ const classPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    let programNetCapacity = classrooms.reduce((acc, room) => {
+      if(room.program === "FE") {
+        acc.feCapacity += room.capacity;
+      } else {
+        acc.beCapacity += room.capacity;
+      }
+      return acc;
+    }, {feCapacity: 0, beCapacity: 0})
+    return programNetCapacity;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -305,7 +357,8 @@ const classPrompts = {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
     /* CODE GOES HERE */
-
+    let capacitySortedRooms = classrooms.sort((a, b) => a.capacity - b.capacity);
+    return capacitySortedRooms;
     // Annotation:
     // Write your annotation here as a comment
   }
@@ -320,7 +373,7 @@ const classPrompts = {
 // DATASET: books from './datasets/books
 
 const bookPrompts = {
-  removeViolence() {
+  removeViolence(arr) {
     // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
@@ -332,11 +385,8 @@ const bookPrompts = {
 
 
     /* CODE GOES HERE */
+    
 
-    // Annotation:
-    // Write your annotation here as a comment
-
-  },
   getNewBooks() {
     // return an array of objects containing all books that were
     // published in the 90's and 00's. Inlucde the title and the year Eg:
