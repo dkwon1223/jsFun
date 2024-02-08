@@ -459,7 +459,10 @@ const weatherPrompts = {
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
     /* CODE GOES HERE */
-
+    let averageTemps = weather.map((area) => {
+      return ((area.temperature.low + area.temperature.high) / 2);
+    })
+    return averageTemps;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -472,7 +475,13 @@ const weatherPrompts = {
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
     /* CODE GOES HERE */
-
+    let sunnySpots = weather.filter((area) => {
+      return area.type === "sunny" || area.type === "mostly sunny";
+    })
+    let sunnyDescriptors = sunnySpots.map((sunnySpot) => {
+      return `${sunnySpot.location} is ${sunnySpot.type}.`;
+    })
+    return sunnyDescriptors;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -513,9 +522,28 @@ const nationalParksPrompts = {
     //}
 
     /* CODE GOES HERE */
-
+    // Input is nationalParks array of objects
+    // Output is an object containing parks to visit and parks visited
+    // filter()
     // Annotation:
     // Write your annotation here as a comment
+    let visitedParks = nationalParks.filter((park) => {
+      return park.visited === true;
+    })
+
+    let nonVisitedParks = nationalParks.filter((park) => {
+      return park.visited === false;
+    })
+
+    let visitedParksDetails = {
+      parksToVisit: nonVisitedParks.map((nonVisitedPark) => {
+        return nonVisitedPark.name;
+      }),
+      parksVisited: visitedParks.map((visitedPark) => {
+        return visitedPark.name;
+      })
+    }
+    return visitedParksDetails;
   },
 
   getParkInEachState() {
@@ -526,14 +554,21 @@ const nationalParksPrompts = {
     // { Maine: 'Acadia' },
     // { Utah: 'Zion' },
     // { Florida: 'Everglades' } ]
-
+    // INPUT: array of objects
+    // OUTPUT: modified array of objects
+    
 
     /* CODE GOES HERE */
-
+    return nationalParks.reduce((acc, park) => {
+      acc.push({
+        [park.location]: park.name
+      })
+      return acc;
+    }, [])
     // Annotation:
     // Write your annotation here as a comment
   },
-
+  
   getParkActivities() {
     // Return an array of all the activities I can do
     // in a National Park. Make sure to exclude duplicates. eg:
@@ -551,7 +586,7 @@ const nationalParksPrompts = {
     //   'rock climbing' ]
 
     /* CODE GOES HERE */
-
+    
     // Annotation:
     // Write your annotation here as a comment
   }
