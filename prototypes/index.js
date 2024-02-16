@@ -711,7 +711,9 @@ const boardGamePrompts = {
     // ["Chess", "Catan", "Checkers", "Pandemic", "Battle Ship", "Azul", "Ticket to Ride"]
 
     /* CODE GOES HERE */
-
+    return boardGames[type].map((game) => {
+      return game.name;
+    })
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -723,7 +725,9 @@ const boardGamePrompts = {
     // ["Candy Land", "Connect Four", "Operation", "Trouble"]
 
     /* CODE GOES HERE */
-
+    return boardGames[type].map((game) => {
+      return game.name;
+    }).sort();
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -734,7 +738,13 @@ const boardGamePrompts = {
     // { name: 'Codenames', rating: 7.4, maxPlayers: 8 },
 
     /* CODE GOES HERE */
-
+    let maxRating = Math.max(...boardGames[type].map((game) => {
+      return game.rating;
+    }))
+    return boardGames[type].find((game) => {
+      return game.rating === maxRating;
+    })
+    
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -745,7 +755,13 @@ const boardGamePrompts = {
     // note: do not worry about rounding your result.
 
     /* CODE GOES HERE */
-
+    let ratings = boardGames[type].map((game) => {
+      return game.rating;
+    })
+    return averageRating = ratings.reduce((sum, rating) => {
+      sum += rating;
+      return sum;
+    }, 0)/ratings.length;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -757,7 +773,13 @@ const boardGamePrompts = {
     // note: do not worry about rounding your result.
 
     /* CODE GOES HERE */
-
+    let targetGames = boardGames[type].filter((game) => {
+      return game.maxPlayers === maximumPlayers;
+    })
+    return targetGames.reduce((sum, game) => {
+      sum += game.rating;
+      return sum;
+    }, 0)/targetGames.length;
     // Annotation:
     // Write your annotation here as a comment
   }
