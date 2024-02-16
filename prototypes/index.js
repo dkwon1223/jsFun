@@ -622,9 +622,12 @@ const breweryPrompts = {
   getBeerCount() {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
-    
-    /* CODE GOES HERE */
 
+    /* CODE GOES HERE */
+    return breweries.reduce((acc, brewery) => {
+      acc += brewery.beers.length;
+      return acc;
+    }, 0)
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -639,7 +642,13 @@ const breweryPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    return breweries.reduce((acc, brewery) => {
+      acc.push({
+        name: brewery.name,
+        beerCount: brewery.beers.length
+      })
+      return acc;
+    }, [])
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -651,7 +660,10 @@ const breweryPrompts = {
 
 
     /* CODE GOES HERE */
-
+    let targetBrewery = breweries.find((brewery) => {
+      return brewery.name === breweryName;
+    })
+    return targetBrewery.beers.length;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -662,7 +674,22 @@ const breweryPrompts = {
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
     /* CODE GOES HERE */
-
+    let maxAbv = Math.max(...breweries.reduce((acc, brewery) => {
+      brewery.beers.forEach((beer) => {
+        acc.push(beer.abv);
+      })
+      return acc;
+    }, []))
+    let allBeers = breweries.reduce((acc, brewery) => {
+      brewery.beers.forEach((beer) => {
+        acc.push(beer);
+      })
+      return acc;
+    }, [])
+    return allBeers.find((beer) => {
+      return beer.abv === maxAbv;
+    })
+  
     // Annotation:
     // Write your annotation here as a comment
   }
