@@ -826,7 +826,14 @@ const turingPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    return instructors.map((instructor) => {
+      return {
+        name: instructor.name,
+        studentCount: (cohorts.find((cohort) => {
+          return cohort.module === instructor.module;
+        })).studentCount
+      }
+    })
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -839,7 +846,14 @@ const turingPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    return cohorts.reduce((acc, cohort) => {
+      if(!acc[`cohort${cohort.cohort}`]) {
+        acc[`cohort${cohort.cohort}`] = cohort.studentCount/instructors.filter((instructor) => {
+          return instructor.module === cohort.module;
+        }).length;
+      }
+      return acc;
+    }, {})
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -860,6 +874,22 @@ const turingPrompts = {
     //   }
 
     /* CODE GOES HERE */
+    return instructors.reduce((acc, instructor) => {
+      if(!acc[instructor.name]) {
+        acc[instructor.name] = instructor.teaches.reduce((acc, topic) => {
+          cohorts.forEach((cohort) => {
+            if(cohort.curriculum.includes(topic)) {
+              if(!acc.includes(cohort.module)) {
+                acc.push(cohort.module);
+                acc.sort();
+              }
+            }
+          })
+          return acc;
+        }, [])
+      }
+      return acc;
+    }, {})
 
     // Annotation:
     // Write your annotation here as a comment
@@ -876,7 +906,7 @@ const turingPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    
     // Annotation:
     // Write your annotation here as a comment
   }
