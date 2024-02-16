@@ -496,7 +496,12 @@ const weatherPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    let maxHumidity = Math.max(...weather.map((place) => {
+      return place.humidity;
+    }))
+    return weather.find((place) => {
+      return place.humidity === maxHumidity;
+    })
     // Annotation:
     // Write your annotation here as a comment
 
@@ -586,7 +591,14 @@ const nationalParksPrompts = {
     //   'rock climbing' ]
 
     /* CODE GOES HERE */
-    
+    return allActivities = nationalParks.reduce((acc, park) => {
+      park.activities.forEach((activity) => {
+        if(!acc.includes(activity)) {
+          acc.push(activity);
+        }
+      })
+      return acc;
+    }, [])
     // Annotation:
     // Write your annotation here as a comment
   }
@@ -610,7 +622,7 @@ const breweryPrompts = {
   getBeerCount() {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
-
+    
     /* CODE GOES HERE */
 
     // Annotation:
