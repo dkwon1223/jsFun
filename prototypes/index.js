@@ -1102,7 +1102,12 @@ const ultimaPrompts = {
     // Answer => 113
 
     /* CODE GOES HERE */
-
+    return characters.reduce((sum, character) => {
+      character.weapons.forEach((weapon) => {
+        sum += weapons[weapon].damage;
+      })
+      return sum;
+    }, 0)
     // Annotation:
     // Write your annotation here as a comment
   },
