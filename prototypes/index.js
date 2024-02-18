@@ -1009,7 +1009,16 @@ const astronomyPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    let constellationsData = Object.values(constellations);
+    let arr = constellationsData.reduce((acc, constellation) => {
+      stars.forEach((star) => {
+        if(constellation.alternateNames.includes(star.constellation)) {
+          acc.push(star);
+        }
+      })
+      return acc;
+    }, [])
+    console.log(arr);
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -1026,7 +1035,14 @@ const astronomyPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    return stars.reduce((acc, star) => {
+      if(!acc[star.color]) {
+        acc[star.color] = [star];
+      } else {
+        acc[star.color].push(star);
+      }
+      return acc;
+    }, {})
     // Annotation:
     // Write your annotation here as a comment
   },
