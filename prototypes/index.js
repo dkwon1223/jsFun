@@ -1168,7 +1168,17 @@ const dinosaurPrompts = {
     // }
 
     /* CODE GOES HERE */
-
+    return movies.reduce((acc, movie) => {
+      if(!acc[movie.title]) {
+        acc[movie.title] = 0;
+      }
+      movie.dinos.forEach((dino) => {
+        if(dinosaurs[dino].isAwesome) {
+          acc[movie.title]++;
+        }
+      })
+      return acc;
+    }, {})
     // Annotation:
     // Write your annotation here as a comment
   },

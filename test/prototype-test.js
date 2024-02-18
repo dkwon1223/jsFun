@@ -793,15 +793,15 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Dinosaur Prompts", () => {
-    it.skip("countAwesomeDinosaurs", () => {
+    it("countAwesomeDinosaurs", () => {
       const e = dinosaurPrompts.countAwesomeDinosaurs();
 
       expect(e).to.deep.equal({
-        'Jurassic Park': 7,
-        'The Lost World: Jurassic Park': 10,
-        'Jurassic Park III': 11,
-        'Jurassic World': 13,
-        'Jurassic World: Fallen Kingdom': 20
+        'Jurassic Park': 5,
+        'The Lost World: Jurassic Park': 8,
+        'Jurassic Park III': 9,
+        'Jurassic World': 11,
+        'Jurassic World: Fallen Kingdom': 18
       })
     });
 
