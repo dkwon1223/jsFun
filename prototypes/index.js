@@ -906,16 +906,25 @@ const turingPrompts = {
     // }
 
     /* CODE GOES HERE */
-    
+    return cohorts.reduce((acc, cohort) => {
+      cohort.curriculum.forEach((topic) => {
+        if(!acc[topic]) {
+          acc[topic] = [];
+        }
+        instructors.forEach((instructor) => {
+          if(instructor.teaches.includes(topic)) {
+            if(!acc[topic].includes(instructor.name)) {
+              acc[topic].push(instructor.name);
+            }
+          }
+        })
+      })
+      return acc;
+    }, {})
     // Annotation:
     // Write your annotation here as a comment
   }
 };
-
-
-
-
-
 
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
