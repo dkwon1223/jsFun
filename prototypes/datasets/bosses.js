@@ -1,4 +1,4 @@
-const bosses = {
+ const bosses = {
   scar: {
     name: 'Scar',
     archnemesis: 'Mufasa',

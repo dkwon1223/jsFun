@@ -949,25 +949,30 @@ const bossPrompts = {
     // ]
 
     /* CODE GOES HERE */
-
+    return sidekicks.reduce((acc, sidekick) => {
+      if(acc.some((element) => element.bossName === sidekick.boss)) {
+        let existingBoss = acc.find((element) => {
+          return element.bossName === sidekick.boss;
+        })
+        existingBoss.sidekickLoyalty += sidekick.loyaltyToBoss;
+      } else {
+        acc.push({
+          bossName: sidekick.boss,
+          sidekickLoyalty: sidekick.loyaltyToBoss
+        })
+      }
+      return acc;
+    }, [])
     // Annotation:
     // Write your annotation here as a comment
   }
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
 
 
 
