@@ -1118,7 +1118,21 @@ const ultimaPrompts = {
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
     /* CODE GOES HERE */
-
+    return characters.reduce((acc, character) => {
+      acc.push({
+        [character.name]: {
+          damage: character.weapons.reduce((sum, weapon) => {
+            sum += weapons[weapon].damage;
+            return sum;
+          }, 0),
+          range: character.weapons.reduce((sum, weapon) => {
+            sum += weapons[weapon].range;
+            return sum;
+          }, 0)
+        }
+      })
+      return acc;
+    }, [])
     // Annotation:
     // Write your annotation here as a comment
   },
