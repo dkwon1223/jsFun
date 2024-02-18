@@ -1064,7 +1064,15 @@ const astronomyPrompts = {
 
 
     /* CODE GOES HERE */
-
+    let sortedStars = stars.sort((a, b) => {
+      return a.visualMagnitude - b.visualMagnitude;
+    })
+    let withConstellations = sortedStars.filter((star) => {
+      return star.constellation.length > 0;
+    })
+    return withConstellations.map((star) => {
+      return star.constellation;
+    })
     // Annotation:
     // Write your annotation here as a comment
   }
